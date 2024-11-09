@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <div class="widget">
+    <h1 class="topic">Where does it come from? Where do we use it?</h1>
+    <div class="date-pick">
+      <p class="input-text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at it's layout.</p>
+      <div class="forms">
+        <div class="form-container">
+          <label for="depart-date"></label>
+          <input type="text" class="block input datepicker" id="depart-date" name="date" placeholder="Depart date">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="17" id="depart-calendar">
+            <image href="/Front-end_TP_test/calendar.svg" width="15" height="17"/>
+          </svg>
+        </div>
+        <div class="form-container">
+          <label for="return-date"></label>
+          <input type="text" class="block input datepicker" id="return-date" name="date" placeholder="Return date">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="17" id="return-calendar">
+            <image href="/Front-end_TP_test/calendar.svg" width="15" height="17"/>
+          </svg>
+        </div>
+        <button id="searchButton" class="search-btn">SEARCH</button>
+        <p class="input-text2">It is a long established fact that a reader will be distracted by the readable content of a page when looking at it's layout.</p>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css" rel="stylesheet">
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+  const departInput = document.getElementById('depart-date');
+  const departPicker = new Pikaday({
+    field: departInput,
+    format: 'D M YYYY', 
+    minDate: new Date(), 
+    toString(date, format) {
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    },
+    parse(dateString, format) {
+
+      const parts = dateString.split('/');
+      const day = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10) - 1;
+      const year = parseInt(parts[2], 10);
+      return new Date(year, month, day);
+    },
+
+  });
+
+  
+  const departCalendar = document.getElementById('depart-calendar');
+  departCalendar.addEventListener('click', () => {
+    departPicker.show();
+  });
+
+
+  const returnInput = document.getElementById('return-date');
+  const returnPicker = new Pikaday({
+    field: returnInput,
+    format: 'D M YYYY', 
+    minDate: new Date(),
+    toString(date, format) {
+
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    },
+    parse(dateString, format) {
+
+      const parts = dateString.split('/');
+      const day = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10) - 1;
+      const year = parseInt(parts[2], 10);
+      return new Date(year, month, day);
+    },
+    
+  });
+
+
+  const returnCalendar = document.getElementById('return-calendar');
+  returnCalendar.addEventListener('click', () => {
+    returnPicker.show();
+  });
+});
+
+  </script>
+</body>
+</html>
