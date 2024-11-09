@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # ticket-reservations
 Тестовое задание - Frontend Developer
 
