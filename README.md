@@ -1,2 +1,2 @@
-# ticket-reservations
-Тестовое задание Frontend JS
+# registration-form
+Тестовое задание 
